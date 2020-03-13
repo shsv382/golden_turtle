@@ -1,7 +1,7 @@
 import React from 'react';
 import ImagesList from '../components/ImagesList';
 import Upload from '../components/Upload';
-import './App.css';
+import './App.scss';
 import { Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
@@ -23,9 +23,21 @@ class App extends React.Component {
   render() {
 	  	return (
 	    <div className="App">
-	      <header className="header">
-	        <a href="/">My page</a>
-	        <a href="/upload">Upload</a>
+	      <header className="header sans-serif">
+	      	<ul className='menu'>
+	      		<li className='fl w-20'>
+			      	<img src='logo-medium.png' className='logo' />
+			    </li>
+			    <li className='fl w-30'>
+
+			    </li>
+			    <li className='fl w-15'>
+			        <a href="/" className="link dim near-white">My page</a>
+			    </li>
+			    <li className='fl w-15'>    
+			        <a href="/upload" className="link dim near-white">Upload</a>
+	        	</li>
+	        </ul>
 	      </header>
 	      <div className="container">
 	      	<Switch>

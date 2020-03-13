@@ -25,3 +25,67 @@
 .votesCount {
 	font-size: 0.5em;
 }
+
+@media screen and (max-width: 768px) {
+	.image_preview {
+		max-width: 240px;
+		max-height: 240px
+	}
+
+	.avgRating {
+		font-size: 1.2em;
+		max-width: 50px;
+		padding: 7px;
+		border-radius: 2px;
+		bottom: 16px;
+		left: 16px;
+	}
+}
+
+@media screen and (max-width: 572px) {
+	.image_preview {
+		max-width: 180px;
+		max-height: 180px
+	}
+
+	.avgRating {
+		font-size: 1em;
+		max-width: 44px;
+		padding: 5px;
+		border-radius: 1.6px;
+		bottom: 12px;
+		left: 12px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.image_preview {
+		max-width: 150px;
+		max-height: 150px
+	}
+
+	.avgRating {
+		font-size: 0.8em;
+		max-width: 40px;
+		padding: 5px;
+		border-radius: 1.6px;
+		bottom: 10px;
+		left: 10px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.image_preview {
+		max-width: 120px;
+		max-height: 120px
+	}
+
+	.avgRating {
+		font-size: 0.8em;
+		max-width: 40px;
+		padding: 5px;
+		border-radius: 1.6px;
+		bottom: 10px;
+		left: 10px;
+	}
+}

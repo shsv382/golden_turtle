@@ -1,10 +1,11 @@
 import React from 'react';
 import Image from './Image';
 import './image.css';
+import './ImagesList.scss';
 
 const ImagesList = ({images}) => {
 	return(
-		<ul>
+		<ul className="imageList">
 			<a href='/upload'>
 			<li className='image_preview tc grow br3 pa4 ma2 dib bw2 shadow-5'
 				style={{

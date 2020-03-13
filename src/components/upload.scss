@@ -1,0 +1,136 @@
+#upload_form {
+	width: 80%;
+	margin: auto;
+	display: flex;
+	padding-top: 20px;
+	justify-content: space-around;
+	align-items: flex-start;
+}
+
+.image_uploader, .description_inputs {
+	display: inline-block;
+	width: 40%;
+	min-width: 300px;
+	min-height: 300px;
+	margin-top: 0;
+}
+
+.image_uploader {
+	overflow: hidden;
+	border: 3px dashed #282c34;
+	border-radius: 3px;/*
+	display: inline-flex;
+	justify-content: center;
+	flex-direction: column;
+	align-content: space-between;*/
+}
+
+.imgPreview {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+#uploading_image {
+	background: #eee;
+	background: linear-gradient(to bottom, #f3f3f3, #d3d3d3);
+	height: 100%;
+	width: 100%;
+}
+
+.description_inputs {
+	padding: 10px;
+	border-left: 1px solid #777;
+	padding-left: 20px;
+	& li {
+		padding: 0;
+		list-style-type: none;
+	}
+}
+
+h5 {
+	margin-bottom: 0;
+}
+
+input[type=text] {
+	height: 30px;
+	border-radius: 0;
+	border: 1px solid #cdcdcd;
+	padding: 0 7px;
+	text-align: center;
+}
+
+textarea {
+	width: 90%;
+}
+
+label {
+	display: inline-block;
+	margin: 10px auto;
+	font-size: 15px;
+	font-weight: 200;
+	color: #555;
+	width: 63%;
+}
+
+.labeledInputText {
+	display: inline-block;
+	width: 40%;
+	margin: 0 10px;
+	overflow: hidden;
+	& input {
+		max-width: 100%;
+	}
+}
+
+input.checkbox {
+	width: 20px;
+	height: 20px;
+	border-radius: 0;
+	border: 1px solid #cdcdcd;
+}
+
+label#check {
+	margin-left: 10px;
+}
+
+button {
+	display: block;
+	border-radius: 0;
+	margin: 20px auto !important;
+	padding: 10px 20px;
+	background-color: #333;
+	color: white;
+	width: 25%;
+	min-width: 150px;
+	font-size: 15px;
+	font-weight: 200;
+	border: none;
+	&[disabled] {
+		background-color: #777;
+	}
+	&:hover {
+		cursor: pointer;
+		background-color: #b39700;
+	}
+}
+
+
+input.validation-success {
+	box-shadow: 0 0 1.3px 1.3px #7c7;
+	border-color: #efe;
+	background-color: #efffef;
+}
+
+input.validation-error {
+	outline-color: red;
+	box-shadow: 0 0 1.3px 1.3px #f77;
+	border-color: #fee;
+	background-color: #fee;
+}
+
+@media screen and (max-width: 768px) {
+	.description_inputs {
+		border-left: none;
+		padding-left: 10px;
+	}
+}
