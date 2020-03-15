@@ -3,13 +3,13 @@
 	margin: auto;
 	display: flex;
 	padding-top: 20px;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: flex-start;
 }
 
 .image_uploader, .description_inputs {
 	display: inline-block;
-	width: 40%;
 	min-width: 300px;
 	min-height: 300px;
 	margin-top: 0;
@@ -18,7 +18,12 @@
 .image_uploader {
 	overflow: hidden;
 	border: 3px dashed #282c34;
-	border-radius: 3px;/*
+	border-radius: 3px;
+	margin-right: 15px;
+	height: 100%;
+	background: url(https://img2.freepng.ru/20180807/tfw/kisspng-scalable-vector-graphics-portable-network-graphics-digital-camera-stroke-icon-transparent-png-amp-5b691c87e64697.6036802415336152399432.jpg);
+	background-size: cover;
+	/*
 	display: inline-flex;
 	justify-content: center;
 	flex-direction: column;
@@ -26,14 +31,13 @@
 }
 
 .imgPreview {
-	max-width: 300px;
-	max-height: 300px;
+	max-width: 100%;
+	max-height: calc(100% - 55px);
 }
 
 #uploading_image {
 	background: #eee;
 	background: linear-gradient(to bottom, #f3f3f3, #d3d3d3);
-	height: 100%;
 	width: 100%;
 }
 
@@ -110,7 +114,7 @@ button {
 	}
 	&:hover {
 		cursor: pointer;
-		background-color: #b39700;
+		background-color: #977700;
 	}
 }
 
@@ -128,9 +132,20 @@ input.validation-error {
 	background-color: #fee;
 }
 
+@media screen and (max-width: 992px) {
+	#upload_form {
+		width: 90%;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.description_inputs {
 		border-left: none;
-		padding-left: 10px;
+	}
+
+	.image_uploader, .description_inputs {
+		min-width: 80%;
+		width: 80%!important;
+		margin: auto;
 	}
 }
