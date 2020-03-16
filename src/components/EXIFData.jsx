@@ -23,7 +23,7 @@ const EXIFData = ({exifData}) => {
 
 const parameterToListItem = (parameter, exifData, inputType) => {
 	if (parameter[0] === "blockName") {
-		return <h5>{parameter[1]}</h5>
+		return <h5 className="blockHeader">{parameter[1]}</h5>
 	} else {
 		return inputType === "area" ? textArea( parameter[1], 
 												"text", 

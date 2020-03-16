@@ -13,6 +13,7 @@ class Upload extends React.Component {
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this._addImgFileReader = this._addImgFileReader.bind(this);
+		this._scrollToBlockHeader = this._scrollToBlockHeader.bind(this);
 	}
 
 	onChange(event) {
@@ -50,29 +51,42 @@ class Upload extends React.Component {
 	    // ------- File reader operations -------
 	    const fr = this._addImgFileReader();
 		fr.readAsDataURL(img1);
+		let blockHeader = document.getElementsByClassName("blockHeader")[0];
+	    this._scrollToBlockHeader(blockHeader);
 
 		this.setState({exifData: exifData});
-		console.log(exifData);
 	}
 
 	_addImgFileReader() {
-			const fr = new FileReader();
-			fr.addEventListener("load", function () {
-				let oldImg = document.querySelector(".imgPreview");
-				if (oldImg) { oldImg.remove() };
-			    let image_uploader = document.getElementsByClassName("image_uploader")[0];
-		        let img = document.createElement('img');
-		        img.src = fr.result;
-		        img.classList.add("imgPreview");
-		        image_uploader.style.maxHeight = document.body.clientHeight - 200 + 'px';
-		        img.style.maxWidth = "100%";
-		        img.style.maxHeight = image_uploader.clientHeight;
-		        document.querySelector("#uploading_image").style.marginTop = "20px";
-		        image_uploader.style.border = "none";
-		        image_uploader.style.background = "none";
-		        image_uploader.prepend(img);
-			}, false);
-			return fr;
+		const fr = new FileReader();
+		fr.addEventListener("load", function () {
+			let oldImg = document.querySelector(".imgPreview");
+			if (oldImg) { oldImg.remove() };
+		    let image_uploader = document.getElementsByClassName("image_uploader")[0];
+	        let img = document.createElement('img');
+	        img.src = fr.result;
+	        img.classList.add("imgPreview");
+	        image_uploader.style.maxHeight = document.body.clientHeight - 200 + 'px';
+	        img.style.maxWidth = "100%";
+	        img.style.maxHeight = document.body.clientHeight - 255 + 'px';
+	        document.querySelector("#uploading_image").style.marginTop = "20px";
+	        image_uploader.style.border = "none";
+	        image_uploader.style.background = "none";
+	        image_uploader.prepend(img);  
+		}, false);
+		return fr;
+	}
+
+	_scrollToBlockHeader(target) {
+		if (document.body.offsetWidth >= 768) {
+			return false
+		} 
+		let interval = setInterval(()=>{
+			document.documentElement.scrollTop += 8;
+			if (target.getBoundingClientRect().top <= 77) {
+				clearInterval(interval);
+			}
+		}, 10)
 	}
 
 	handleSubmit(e) {
