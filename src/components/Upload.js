@@ -54,6 +54,7 @@ class Upload extends React.Component {
 		let blockHeader = document.getElementsByClassName("blockHeader")[0];
 	    this._scrollToBlockHeader(blockHeader);
 
+	    // ------- Setting state -------
 		this.setState({exifData: exifData});
 	}
 
