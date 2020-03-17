@@ -12,6 +12,7 @@ class Upload extends React.Component {
 		}
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.uploadBtnClick = this.uploadBtnClick.bind(this);
 		this._addImgFileReader = this._addImgFileReader.bind(this);
 		this._scrollToBlockHeader = this._scrollToBlockHeader.bind(this);
 	}
@@ -54,6 +55,7 @@ class Upload extends React.Component {
 		let blockHeader = document.getElementsByClassName("blockHeader")[0];
 	    this._scrollToBlockHeader(blockHeader);
 
+		
 	    // ------- Setting state -------
 		this.setState({exifData: exifData});
 	}
@@ -63,17 +65,25 @@ class Upload extends React.Component {
 		fr.addEventListener("load", function () {
 			let oldImg = document.querySelector(".imgPreview");
 			if (oldImg) { oldImg.remove() };
-		    let image_uploader = document.getElementsByClassName("image_uploader")[0];
-	        let img = document.createElement('img');
+		    const image_uploader = document.getElementsByClassName("image_uploader")[0];
+	        const img = document.createElement('img');
 	        img.src = fr.result;
 	        img.classList.add("imgPreview");
-	        image_uploader.style.maxHeight = document.body.clientHeight - 200 + 'px';
+
+	        // ------- Change it to Image-heighted div height -------
+	        if (document.documentElement.clientWidth >= 768) {
+	        	image_uploader.style.height = document.body.offsetHeight - 180 + 'px';	
+	        } else {
+	        	image_uploader.style.maxHeight = document.body.offsetHeight - 180 + 'px';
+	        }
+	        // ------------------------------------------------------
+
+	        img.style.maxHeight = image_uploader.clientHeight - 70 + 'px';
 	        img.style.maxWidth = "100%";
-	        img.style.maxHeight = document.body.clientHeight - 255 + 'px';
 	        document.querySelector("#uploading_image").style.marginTop = "20px";
 	        image_uploader.style.border = "none";
 	        image_uploader.style.background = "none";
-	        image_uploader.prepend(img);  
+	        image_uploader.prepend(img); 
 		}, false);
 		return fr;
 	}
@@ -81,7 +91,7 @@ class Upload extends React.Component {
 	_scrollToBlockHeader(target) {
 		if (document.body.offsetWidth >= 768) {
 			return false
-		} 
+		}
 		let interval = setInterval(()=>{
 			document.documentElement.scrollTop += 8;
 			if (target.getBoundingClientRect().top <= 77) {
@@ -96,11 +106,25 @@ class Upload extends React.Component {
 		e.preventDefault();
 	}
 
+	uploadBtnClick() {
+		const file = document.getElementById("uploading_image");
+		file.click();
+	}
+
 	render() {
 		return(
 			<form id='upload_form'>
 				<div className="image_uploader dib tc fl w-40">
-					<input type='file' id="uploading_image" onChange={this.onChange}></input>
+					<input  type='file' 
+							id="uploading_image"
+							onChange={this.onChange}
+							></input>
+					<input  type="button" 
+							className="dim" 
+							id="upload_btn"
+							onClick={this.uploadBtnClick}
+							value="ИЗМЕНИТЬ"
+					/>
 				</div>
 				<ul className="description_inputs dib tc fl w-50" id='exif'>
 					<EXIFData exifData={this.state.exifData} />

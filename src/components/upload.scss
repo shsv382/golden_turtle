@@ -23,16 +23,19 @@
 	height: 100%;
 	background: url(https://img2.freepng.ru/20180807/tfw/kisspng-scalable-vector-graphics-portable-network-graphics-digital-camera-stroke-icon-transparent-png-amp-5b691c87e64697.6036802415336152399432.jpg);
 	background-size: cover;
+	position: relative;
 }
 
 .imgPreview {
-	max-width: 100%;
+	display: inline-block;
 }
 
 #uploading_image {
 	background: #eee;
 	background: linear-gradient(to bottom, #f3f3f3, #d3d3d3);
-	width: 100%;
+	width: 25%;
+	min-width: 150px;
+	opacity: 0%;
 }
 
 .description_inputs {
@@ -91,11 +94,12 @@ label#check {
 	margin-left: 10px;
 }
 
-button {
+button, #upload_btn {
 	display: block;
 	border-radius: 0;
 	margin: 20px auto !important;
 	padding: 10px 20px;
+	height: 40px;
 	background-color: #333;
 	color: white;
 	width: 25%;
@@ -108,10 +112,16 @@ button {
 	}
 	&:hover {
 		cursor: pointer;
-		background-color: #977700;
+		background-color: #b79300;
+		opacity: 80%!important;
 	}
 }
 
+#uploading_image, #upload_btn {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
 
 input.validation-success {
 	box-shadow: 0 0 1.3px 1.3px #7c7;
@@ -141,5 +151,6 @@ input.validation-error {
 		min-width: 80%;
 		width: 80%!important;
 		margin: auto;
+		display: inline-block;
 	}
 }
