@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-	<BrowserRouter basename={'https://shsv382.github.io/golden_turtle/'}>
+	<BrowserRouter basename={process.env.PUBLIC_URL}>
 		<App />
 	</BrowserRouter>, document.getElementById('root'));
 
