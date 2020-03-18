@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  width: 100%;
 }
 
 .header {
@@ -40,6 +41,13 @@
 	width: 85%;
 	margin: auto;
 	padding: 0 20px;
+  & li.menu-item {
+    display: block;
+    width: 80%;
+    padding: 20px 0;
+    border-color: #373a47 !important;
+    border: none !important;
+  }
 }
 
 .container {

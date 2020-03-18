@@ -2,7 +2,9 @@ import React from 'react';
 import ImagesList from '../components/ImagesList';
 import Upload from '../components/Upload';
 import './App.scss';
+import './burger.scss';
 import { Switch, Route } from 'react-router-dom';
+import { slide as Menu } from 'react-burger-menu'
 
 class App extends React.Component {
   constructor(props) {
@@ -29,10 +31,23 @@ class App extends React.Component {
 	  	return (
 	    <div className="App">
 	      <header className="header sans-serif">
-	      	<ul className='menu'>
+	      	
+	      	<ul className='menu' id="menu-container">
 	      		<li className='fl w-20'>
 			      	<img src='logo-medium.png' className='logo' />
 			    </li>
+		      	<Menu 	pageWrapId={ "page-wrap" }
+		      			outerContainerId={ "menu-container" }
+		      			right
+		      	>
+		      		<li className='fl w-15 menu-item'>
+				        <a href="/" className="link dim near-white">My page</a>
+				    </li>
+				    <li className='fl w-15 menu-item'>    
+				        <a href="/upload" className="link dim near-white">Upload</a>
+		        	</li>
+		      	</Menu>
+	      		{/*
 			    <li className='fl w-30'>
 
 			    </li>
@@ -41,7 +56,7 @@ class App extends React.Component {
 			    </li>
 			    <li className='fl w-15'>    
 			        <a href="/upload" className="link dim near-white">Upload</a>
-	        	</li>
+	        	</li>*/}
 	        </ul>
 	      </header>
 	      <div className="container">
