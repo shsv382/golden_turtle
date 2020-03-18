@@ -18,6 +18,11 @@ class App extends React.Component {
 	.then((images) => {
 		this.setState({images: images});
 	})
+	.catch(error => {
+		if (error.message.toLowerCase().includes("failed to fetch")) {
+			console.log("Нет соединения с сервером")
+		}
+	})
   }
 
   render() {

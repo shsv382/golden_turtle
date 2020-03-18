@@ -11,16 +11,56 @@ class Upload extends React.Component {
 			exifData: {}
 		}
 		this.onChange = this.onChange.bind(this);
+		this.handleDrop = this.handleDrop.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.uploadBtnClick = this.uploadBtnClick.bind(this);
+		this.handleDragOver = this.handleDragOver.bind(this);
+		this.handleDragLeave = this.handleDragLeave.bind(this);
 		this._addImgFileReader = this._addImgFileReader.bind(this);
 		this._scrollToBlockHeader = this._scrollToBlockHeader.bind(this);
+		this._uploadingImageHandle = this._uploadingImageHandle.bind(this);
 	}
 
-	onChange(event) {
+	// ------- Event Handlers -------
+
+	onChange() {
 		// ------- Checking file format matches to image -------
-		let img1 = document.querySelector("#uploading_image").files[0];
-		if (img1.type.split("/")[0].toLowerCase() !== "image") {
+		const img = document.querySelector("#uploading_image").files[0];
+		this._uploadingImageHandle(img);
+	}
+
+	handleSubmit(e) {
+		alert(`Данные отправлены! Например, выдержка - 
+			${this.state.exifData["ExposureTime"]}`);
+		e.preventDefault();
+	}
+
+	uploadBtnClick() {
+		const file = document.getElementById("uploading_image");
+		file.click();
+	}
+
+	handleDragOver(e) {
+		e.target.classList.add("dragover");
+		e.preventDefault();
+	}
+
+	handleDragLeave(e) {
+		e.target.classList.remove("dragover")
+	}
+
+	handleDrop(e) {
+		e.preventDefault();
+		e.target.classList.remove("dragover");
+		const img = e.dataTransfer.files[0];
+		this._uploadingImageHandle(img);
+		return false;
+	}
+
+	// ------- Service Methods -------
+
+	_uploadingImageHandle(img) {
+		if (img.type.split("/")[0].toLowerCase() !== "image") {
 			alert("Пожалуйста, загрузите файл-изображение!");
 			return null;
 		}
@@ -28,7 +68,7 @@ class Upload extends React.Component {
 		// ------- EXIF data fullfill -------
 		const exifList = document.getElementById('exif');
 		let exifData = {};
-    	EXIF.getData(img1, function() {
+    	EXIF.getData(img, function() {
 	        const parameters = ["Model", "ExposureTime", "FNumber", 
 	         					"ISOSpeedRatings", "FocalLength"];
 	        let exifListInputs = exifList.getElementsByTagName("input");
@@ -51,7 +91,7 @@ class Upload extends React.Component {
 
 	    // ------- File reader operations -------
 	    const fr = this._addImgFileReader();
-		fr.readAsDataURL(img1);
+		fr.readAsDataURL(img);
 		let blockHeader = document.getElementsByClassName("blockHeader")[0];
 	    this._scrollToBlockHeader(blockHeader);
 
@@ -72,9 +112,9 @@ class Upload extends React.Component {
 
 	        // ------- Change it to Image-heighted div height -------
 	        if (document.documentElement.clientWidth >= 768) {
-	        	image_uploader.style.height = document.body.offsetHeight - 180 + 'px';	
+	        	image_uploader.style.height = document.body.offsetHeight - 130 + 'px';	
 	        } else {
-	        	image_uploader.style.maxHeight = document.body.offsetHeight - 180 + 'px';
+	        	image_uploader.style.maxHeight = document.body.offsetHeight - 130 + 'px';
 	        }
 	        // ------------------------------------------------------
 
@@ -100,21 +140,15 @@ class Upload extends React.Component {
 		}, 10)
 	}
 
-	handleSubmit(e) {
-		alert(`Данные отправлены! Например, выдержка - 
-			${this.state.exifData["ExposureTime"]}`);
-		e.preventDefault();
-	}
-
-	uploadBtnClick() {
-		const file = document.getElementById("uploading_image");
-		file.click();
-	}
+	// ------- Rendering -------
 
 	render() {
 		return(
 			<form id='upload_form'>
-				<div className="image_uploader dib tc fl w-40">
+				<div className="image_uploader dib tc fl w-40"
+					onDragOver = {this.handleDragOver}
+					onDragLeave={this.handleDragLeave}
+					onDrop={this.handleDrop}>
 					<input  type='file' 
 							id="uploading_image"
 							onChange={this.onChange}
