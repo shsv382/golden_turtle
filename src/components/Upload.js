@@ -22,7 +22,6 @@ class Upload extends React.Component {
 	}
 
 	// ------- Event Handlers -------
-
 	onChange() {
 		// ------- Checking file format matches to image -------
 		const img = document.querySelector("#uploading_image").files[0];
@@ -58,7 +57,6 @@ class Upload extends React.Component {
 	}
 
 	// ------- Service Methods -------
-
 	_uploadingImageHandle(img) {
 		if (img.type.split("/")[0].toLowerCase() !== "image") {
 			alert("Пожалуйста, загрузите файл-изображение!");
@@ -141,7 +139,6 @@ class Upload extends React.Component {
 	}
 
 	// ------- Rendering -------
-
 	render() {
 		return(
 			<form id='upload_form'>
