@@ -2,21 +2,27 @@ import React from 'react';
 import Image from './Image';
 import EXIFData from './EXIFData';
 import EXIF from 'exif-js';
+import { Line } from 'rc-progress';
 import './upload.scss';
 
 class Upload extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			exifData: {}
+			exifData: {},
+			percent: 0
 		}
+
 		this.onChange = this.onChange.bind(this);
 		this.handleDrop = this.handleDrop.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.uploadBtnClick = this.uploadBtnClick.bind(this);
 		this.handleDragOver = this.handleDragOver.bind(this);
 		this.handleDragLeave = this.handleDragLeave.bind(this);
+		
 		this._addImgFileReader = this._addImgFileReader.bind(this);
+		this._restartProgressBar = this._restartProgressBar.bind(this);
+		this._increaseProgressBar = this._increaseProgressBar.bind(this);
 		this._scrollToBlockHeader = this._scrollToBlockHeader.bind(this);
 		this._uploadingImageHandle = this._uploadingImageHandle.bind(this);
 	}
@@ -57,11 +63,32 @@ class Upload extends React.Component {
 	}
 
 	// ------- Service Methods -------
+	_increaseProgressBar() {
+	    const { percent } = this.state;
+	    const newPercent = percent + 1;
+	    if (newPercent >= 100) {
+	      clearTimeout(this.tm);
+	      return;
+	    }
+	    this.setState({ percent: newPercent });
+	    this.tm = setTimeout(this._increaseProgressBar, 10);
+  }
+
+    _restartProgressBar() {
+	    clearTimeout(this.tm);
+	    this.setState({ percent: 0 }, () => {
+	      this._increaseProgressBar();
+	    });
+    }
+
 	_uploadingImageHandle(img) {
 		if (img.type.split("/")[0].toLowerCase() !== "image") {
 			alert("Пожалуйста, загрузите файл-изображение!");
 			return null;
 		}
+
+		// ------- Progress bar start -------
+		this._restartProgressBar();
 
 		// ------- EXIF data fullfill -------
 		const exifList = document.getElementById('exif');
@@ -155,6 +182,16 @@ class Upload extends React.Component {
 							id="upload_btn"
 							onClick={this.uploadBtnClick}
 							value="ИЗМЕНИТЬ"
+					/>
+					<Line   percent={this.state.percent} 
+							strokeWidth="1" 
+							strokeColor="#d7b900" 
+							width="100%"
+							style={{
+								position: "absolute",
+								bottom: 0,
+								left: 0
+							}}
 					/>
 				</div>
 				<ul className="description_inputs dib tc fl w-50" id='exif'>
