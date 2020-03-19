@@ -61,10 +61,10 @@ class App extends React.Component {
 	      </header>
 	      <div className="container">
 	      	<Switch>
-	            <Route exact path='/' render={ () => 
+	            <Route exact path={process.env.PUBLIC_URL + '/'} render={ () => 
 					<ImagesList images={this.state.images} />
 	            } />
-	            <Route path='/upload' component={Upload} />
+	            <Route path={process.env.PUBLIC_URL + '/upload'} component={Upload} />
 	        </Switch>
 	      	
 	      </div>
