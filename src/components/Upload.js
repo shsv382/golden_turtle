@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from './Image';
 import EXIFData from './EXIFData';
 import EXIF from 'exif-js';
 import { Line } from 'rc-progress';

@@ -1,3 +1,7 @@
+#root {
+  width: 100%;
+}
+
 .App {
   text-align: center;
   width: 100%;
@@ -47,6 +51,7 @@
     padding: 20px 0;
     border-color: #373a47 !important;
     border: none !important;
+    border-image: none !important;
   }
 }
 
