@@ -158,7 +158,8 @@ class Upload extends React.Component {
 		}
 		let interval = setInterval(()=>{
 			document.documentElement.scrollTop += 8;
-			if (target.getBoundingClientRect().top <= 77) {
+			if (target.getBoundingClientRect().top <= 77 || 
+				document.documentElement.scrollTop >= document.documentElement.scrollHeight - document.documentElement.clientHeight - 30) {
 				clearInterval(interval);
 			}
 		}, 10)
