@@ -14,7 +14,7 @@
 	max-width: 75px;
 	overflow: hidden;
 	background: black;
-	opacity: 80%;
+	opacity: 0.8 !important;
 	padding: 10px;
 	border-radius: 3px;
 	position: absolute;
@@ -74,7 +74,23 @@
 	}
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 390px) {
+	.image_preview {
+		max-width: 130px;
+		max-height: 130px
+	}
+
+	.avgRating {
+		font-size: 0.8em;
+		max-width: 40px;
+		padding: 5px;
+		border-radius: 1.6px;
+		bottom: 10px;
+		left: 10px;
+	}
+}
+
+@media screen and (max-width: 355px) {
 	.image_preview {
 		max-width: 120px;
 		max-height: 120px

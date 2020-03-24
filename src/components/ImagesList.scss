@@ -4,3 +4,14 @@
 		margin: auto;
 	}
 }
+
+@media screen and (max-width: 480px) {
+	.container {
+		width: 95%;
+		margin: auto;
+	}
+
+	.imageList {
+		width: 100%;
+	}
+}
