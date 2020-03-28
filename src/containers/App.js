@@ -18,6 +18,10 @@ class App extends React.Component {
   	fetch('https://api.unsplash.com/photos/random?client_id=99c7ec0457480b03326a57d7e361d98e8a4ffc578f171b1224618789e74e78aa&count=15')
 	.then(response => response.json())
 	.then((images) => {
+		images.map((image, i) => {
+			image.avgRating = (Math.round(Math.random()*100)/100 + 1.5).toString().slice(0,4);
+			image.votesCount = (Math.floor(Math.random() * 30) + 10).toString().slice(0,4);
+		})
 		this.setState({images: images});
 	})
 	.catch(error => {

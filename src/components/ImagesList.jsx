@@ -24,8 +24,8 @@ const ImagesList = ({images}) => {
 				return (
 					<Image
 						key={i}
-						image={image.urls.small} />
-						)
+						image={image} />
+					)
 				}) 
 			}
 		</ul>
