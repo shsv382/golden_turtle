@@ -116,8 +116,8 @@ class Upload extends React.Component {
 	    // ------- File reader operations -------
 	    const fr = this._addImgFileReader();
 		fr.readAsDataURL(img);
-		let blockHeader = document.getElementsByClassName("blockHeader")[0];
-	    this._scrollToBlockHeader(blockHeader);
+		let descriptionInputs = document.getElementsByClassName("description_inputs")[0];
+	    this._scrollToBlockHeader(descriptionInputs);
 
 		
 	    // ------- Setting state -------
@@ -169,6 +169,7 @@ class Upload extends React.Component {
 	render() {
 		return(
 			<form id='upload_form'>
+				<div className="service"></div>
 				<div className="image_uploader dib tc fl w-40"
 					onDragOver = {this.handleDragOver}
 					onDragLeave={this.handleDragLeave}

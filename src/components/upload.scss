@@ -8,6 +8,21 @@
 	align-items: flex-start;
 }
 
+.service {
+	position: fixed;
+	top: 80px;
+	right: 30px;
+	min-width: 120px;
+	max-width: 45%;
+	min-height: 50px;
+	border: 2px solid #009933;
+	color: #009933;
+	background: #00ffbb;
+	padding: 10px;
+	font-size: 20px;
+	z-index: 10000;
+}
+
 .image_uploader, .description_inputs {
 	display: inline-block;
 	min-width: 300px;

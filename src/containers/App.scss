@@ -59,3 +59,9 @@
   padding-top: 80px;
   max-width: 100%;
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding-bottom: 30px;
+  }
+}
