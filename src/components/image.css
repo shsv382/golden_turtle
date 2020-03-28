@@ -76,8 +76,8 @@
 
 @media screen and (max-width: 390px) {
 	.image_preview {
-		max-width: 130px;
-		max-height: 130px
+		max-width: 150px;
+		max-height: 150px
 	}
 
 	.avgRating {
@@ -92,8 +92,8 @@
 
 @media screen and (max-width: 355px) {
 	.image_preview {
-		max-width: 120px;
-		max-height: 120px
+		max-width: 130px;
+		max-height: 130px
 	}
 
 	.avgRating {
