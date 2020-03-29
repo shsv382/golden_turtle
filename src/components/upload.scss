@@ -66,10 +66,16 @@ input[type=text] {
 	border: 1px solid #cdcdcd;
 	padding: 0 7px;
 	text-align: center;
+	font-size: 14px;
+	font-weight: 200;
+	color: #555;
 }
 
 textarea {
 	width: 90%;
+	font-size: 14px;
+	font-weight: 200;
+	color: #555;
 }
 
 label {
@@ -90,6 +96,17 @@ label {
 	& input {
 		max-width: 100%;
 	}
+}
+
+.inputSelect {
+	margin: 10px auto;
+	padding: 5px;
+	width: 90%;
+	min-height: 30px;
+	background: #fff;
+	font-size: 14px;
+	font-weight: 200;
+	color: #555;
 }
 
 input.checkbox {

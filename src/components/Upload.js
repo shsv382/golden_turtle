@@ -1,5 +1,6 @@
 import React from 'react';
 import EXIFData from './EXIFData';
+import Select from './Select';
 import EXIF from 'exif-js';
 import { Line } from 'rc-progress';
 import './upload.scss';
@@ -61,6 +62,19 @@ class Upload extends React.Component {
 		return false;
 	}
 
+	get categories() {
+		return [
+			{value: "landscape",
+			 description: "Пейзаж"},
+			{value: "bird",
+			 description: "Птицы"},
+			{value: "wild_animals",
+			 description: "Дикие животные"},
+			{value: "flowers",
+			 description: "Цветы"},
+		]
+	}
+
 	// ------- Service Methods -------
 	_increaseProgressBar() {
 	    const { percent } = this.state;
@@ -81,7 +95,10 @@ class Upload extends React.Component {
     }
 
 	_uploadingImageHandle(img) {
-		if (img.type.split("/")[0].toLowerCase() !== "image") {
+		if (!img) {
+			return null;
+		}
+		if (img && img.type.split("/")[0].toLowerCase() !== "image") {
 			alert("Пожалуйста, загрузите файл-изображение!");
 			return null;
 		}
@@ -196,6 +213,9 @@ class Upload extends React.Component {
 					/>
 				</div>
 				<ul className="description_inputs dib tc fl w-50" id='exif'>
+					<Select name="category"
+							title="Номинация"
+							options={this.categories} />
 					<EXIFData exifData={this.state.exifData} />
 					<button type="submit" 
 							id="submit" 
