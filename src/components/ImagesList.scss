@@ -1,7 +1,37 @@
+.radio {
+	width: 50%;
+	margin-left: 40%;
+	margin-bottom: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	& label {
+		max-width: 25%;
+		&:hover {
+			color: #337;
+			font-weight: 500;
+			cursor: pointer;
+		}
+	}
+}
+
+input[type=radio] {
+	width: 15px;
+	height: 15px;
+	background: white;
+	border-radius: none;
+	display: none;
+}
+
 @media screen and (max-width: 768px) {
 	.imageList {
 		padding: 0 5%;
 		margin: auto;
+	}
+
+	.radio {
+		width: 100%;
+		margin-left: 0;
 	}
 }
 
@@ -14,5 +44,10 @@
 	.imageList {
 		padding: 0;
 		width: 100%;
+	}
+
+	.radio {
+		width: 100%;
+		margin-left: 0;
 	}
 }

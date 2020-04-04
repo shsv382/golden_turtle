@@ -1,0 +1,1 @@
+export const FILTER_IMAGES = 'FILTER_IMAGES';

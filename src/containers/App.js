@@ -4,7 +4,21 @@ import Upload from '../components/Upload';
 import './App.scss';
 import './burger.scss';
 import { Switch, Route } from 'react-router-dom';
-import { slide as Menu } from 'react-burger-menu'
+import { slide as Menu } from 'react-burger-menu';
+import { connect } from 'react-redux';
+import { filterImages } from '../actions';
+
+const mapStateToProps = state => {
+	return {
+		filterBy: state.filterBy
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onFilterChange: (event) => dispatch(filterImages(event.target.value))
+	}
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -32,6 +46,19 @@ class App extends React.Component {
   }
 
   render() {
+  		const { onFilterChange, filterBy } = this.props;
+  		const images = this.state.images.filter(image => {
+  			switch (filterBy) {
+  				case 'top100':
+  					return image.avgRating > 1.9;
+  					break;
+  				case 'finalist':
+  					return image.avgRating > 2.2;
+  					break;
+  				default:
+  					return image;
+  			}
+  		})
 	  	return (
 	    <div className="App">
 	      <header className="header sans-serif">
@@ -66,7 +93,8 @@ class App extends React.Component {
 	      <div className="container">
 	      	<Switch>
 	            <Route exact path={process.env.PUBLIC_URL + '/'} render={ () => 
-					<ImagesList images={this.state.images} />
+					<ImagesList images={images}
+								filterBy={onFilterChange} />
 	            } />
 	            <Route path={process.env.PUBLIC_URL + '/upload'} component={Upload} />
 	        </Switch>
@@ -77,4 +105,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
