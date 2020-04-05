@@ -6,10 +6,12 @@ import 'tachyons';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { filterImages } from './reducers';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { filterImages, requestImages } from './reducers';
+import thunkMiddleware from 'redux-thunk';
 
-const store = createStore(filterImages);
+const rootReducer = combineReducers({filterImages, requestImages})
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 ReactDOM.render(
 	<BrowserRouter>

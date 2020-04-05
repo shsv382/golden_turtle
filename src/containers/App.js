@@ -6,17 +6,21 @@ import './burger.scss';
 import { Switch, Route } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
-import { filterImages } from '../actions';
+import { filterImages, requestImages } from '../actions';
 
 const mapStateToProps = state => {
 	return {
-		filterBy: state.filterBy
+		filterBy: 	state.filterImages.filterBy,
+		images:     state.requestImages.images,
+    	isPending:  state.requestImages.isPending,
+    	error:      state.requestImages.error
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onFilterChange: (event) => dispatch(filterImages(event.target.value))
+		onFilterChange: (event) => dispatch(filterImages(event.target.value)),
+		onRequestImages: () => requestImages(dispatch)
 	}
 }
 
@@ -29,25 +33,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-  	fetch('https://api.unsplash.com/photos/random?client_id=99c7ec0457480b03326a57d7e361d98e8a4ffc578f171b1224618789e74e78aa&count=15')
-	.then(response => response.json())
-	.then((images) => {
-		images.map((image, i) => {
-			image.avgRating = (Math.round(Math.random()*100)/100 + 1.5).toString().slice(0,4);
-			image.votesCount = (Math.floor(Math.random() * 30) + 10).toString().slice(0,4);
-		})
-		this.setState({images: images});
-	})
-	.catch(error => {
-		if (error.message.toLowerCase().includes("failed to fetch")) {
-			console.log("Нет соединения с сервером")
-		}
-	})
+	this.props.onRequestImages();
   }
 
   render() {
   		const { onFilterChange, filterBy } = this.props;
-  		const images = this.state.images.filter(image => {
+  		const images = this.props.images.filter(image => {
   			switch (filterBy) {
   				case 'top100':
   					return image.avgRating > 1.9;
@@ -93,8 +84,12 @@ class App extends React.Component {
 	      <div className="container">
 	      	<Switch>
 	            <Route exact path={process.env.PUBLIC_URL + '/'} render={ () => 
-					<ImagesList images={images}
-								filterBy={onFilterChange} />
+					(this.props.isPending) ? 
+						<h1>Загрузка</h1>
+					:
+						<ImagesList images={images}
+								filterBy={onFilterChange} />	
+					
 	            } />
 	            <Route path={process.env.PUBLIC_URL + '/upload'} component={Upload} />
 	        </Switch>
