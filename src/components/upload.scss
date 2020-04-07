@@ -170,6 +170,8 @@ input.validation-error {
 @media screen and (max-width: 768px) {
 	.description_inputs {
 		border-left: none;
+		padding-right: 0;
+		padding-left: 0;
 	}
 
 	.image_uploader, .description_inputs {
@@ -177,5 +179,13 @@ input.validation-error {
 		width: 80%!important;
 		margin: auto;
 		display: inline-block;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.description_inputs {
+		& button {
+			min-width: 90%;
+		}
 	}
 }

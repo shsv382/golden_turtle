@@ -60,8 +60,25 @@ const textArea = (label, type, name, value) => {
 				<label>{label}</label>
 				<textarea type={type} 
 						  name={name} 
-						  value={value} />
+						  value={value} 
+						  onFocus={extendTextArea(true)}
+						  onBlur={extendTextArea(false)} />
 			</div>)
+}
+
+const extendTextArea = (expand) => (event) => {
+	let height = event.target.clientHeight;
+	const endHeight = expand ? height * 3 : height/3;
+	const area = event.target;
+	area.style.minHeight = `${height}px`;
+	// area.style.minHeight = `${90}px`;
+	const interval = setInterval(() => {
+		height += expand ? 5 : -5;
+		area.style.minHeight = `${height}px`;
+		if ((height >= endHeight && expand) || (height <= endHeight && !expand)) {
+			clearInterval(interval);
+		}
+	}, 10);
 }
 
 export default EXIFData;
