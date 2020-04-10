@@ -7,11 +7,13 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { filterImages, requestImages } from './reducers';
+import { filterImages, requestImages, changeExifData } from './reducers';
 import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
-const rootReducer = combineReducers({filterImages, requestImages})
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const logger = createLogger();
+const rootReducer = combineReducers({filterImages, requestImages, changeExifData})
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(
 	<BrowserRouter>

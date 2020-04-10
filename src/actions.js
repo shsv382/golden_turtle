@@ -1,7 +1,9 @@
 import { FILTER_IMAGES,
 		 REQUEST_IMAGES_PENDING,
 		 REQUEST_IMAGES_SUCCESS,
-		 REQUEST_IMAGES_FAILED } from './constants';
+		 REQUEST_IMAGES_FAILED,
+		 CHANGE_EXIF_DATA,
+		 CHANGE_EXIF_INPUT } from './constants';
 
 export const filterImages = (value) => ({
 	type: FILTER_IMAGES,
@@ -22,3 +24,16 @@ export const requestImages = async (dispatch) => {
 		dispatch( {type: REQUEST_IMAGES_FAILED, payload: error} );
 	}
 }
+
+export const changeExif = (exifData) => ({
+				type: CHANGE_EXIF_DATA,
+				payload: exifData
+})
+
+export const changeInput = (input) => ({
+	type: CHANGE_EXIF_INPUT,
+	payload: {
+		name: input.name,
+		value: input.value
+	}
+})

@@ -4,12 +4,26 @@ import Select from './Select';
 import EXIF from 'exif-js';
 import { Line } from 'rc-progress';
 import './upload.scss';
+import { connect } from 'react-redux';
+import { changeExif, changeInput } from '../actions';
+
+const mapStateToProps = state => {
+	return {
+		exifData: state.changeExifData.exifData
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onChangeExif: (parameters) => dispatch(changeExif(parameters)),
+		onChangeInput: (event) => dispatch(changeInput(event.target))
+	}
+}
 
 class Upload extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			exifData: {},
 			percent: 0
 		}
 
@@ -30,13 +44,13 @@ class Upload extends React.Component {
 	// ------- Event Handlers -------
 	onChange() {
 		// ------- Checking file format matches to image -------
-		const img = document.querySelector("#uploading_image").files[0];
-		this._uploadingImageHandle(img);
+		const img = document.querySelector("#uploading_image");
+		this._uploadingImageHandle(img.files[0]);
 	}
 
 	handleSubmit(e) {
 		alert(`Данные отправлены! Например, выдержка - 
-			${this.state.exifData["ExposureTime"]}`);
+			${this.props.exifData["ExposureTime"]}`);
 		e.preventDefault();
 	}
 
@@ -123,10 +137,13 @@ class Upload extends React.Component {
 	        	}
 	        	try {
 	        		exifData[parameter] = current.toString();
+	        		// let changingInput = document.getElementsByName(parameter)[0];
+	        		// this.props.onChangeInput(changingInput)
+				
 	        	} catch {
 	        		exifData[parameter] = "";
 	        	}
-				document.getElementsByName(parameter)[0].value = exifData[parameter];
+	        	document.getElementsByName(parameter)[0].value = exifData[parameter];
 	        })
 	    });
 
@@ -138,7 +155,7 @@ class Upload extends React.Component {
 
 		
 	    // ------- Setting state -------
-		this.setState({exifData: exifData});
+		this.props.onChangeExif(exifData);
 	}
 
 	_addImgFileReader() {
@@ -176,7 +193,7 @@ class Upload extends React.Component {
 		let interval = setInterval(()=>{
 			document.documentElement.scrollTop += 8;
 			if (target.getBoundingClientRect().top <= 77 || 
-				document.documentElement.scrollTop >= document.documentElement.scrollHeight - document.documentElement.clientHeight - 30) {
+				document.documentElement.scrollTop >= document.documentElement.scrollHeight - document.documentElement.clientHeight - 20) {
 				clearInterval(interval);
 			}
 		}, 10)
@@ -215,8 +232,10 @@ class Upload extends React.Component {
 				<ul className="description_inputs dib tc fl w-50" id='exif'>
 					<Select name="category"
 							title="Номинация"
-							options={this.categories} />
-					<EXIFData exifData={this.state.exifData} />
+							options={this.categories}
+							onChangeInput={this.props.onChangeInput} />
+					<EXIFData exifData={this.props.exifData}
+							onChangeInput={this.props.onChangeInput} />
 					<button type="submit" 
 							id="submit" 
 							className="dim"
@@ -231,4 +250,4 @@ class Upload extends React.Component {
 	}
 }
 
-export default Upload;
+export default connect(mapStateToProps, mapDispatchToProps)(Upload);

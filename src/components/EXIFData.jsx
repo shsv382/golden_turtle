@@ -1,7 +1,7 @@
 import React from 'react';
 import './EXIFData.scss';
 
-const EXIFData = ({exifData}) => {
+const EXIFData = ({exifData, onChangeInput}) => {
 	const params = {
 		blockName: "Описание снимка",
 		Model: "Оборудование",
@@ -17,52 +17,56 @@ const EXIFData = ({exifData}) => {
 	}
 
 	return (
-		iterateParams(params, exifData, "area")
+		iterateParams(params, exifData, onChangeInput, "area")
 	)
 }
 
-const parameterToListItem = (parameter, exifData, inputType) => {
+const parameterToListItem = (parameter, exifData, onChange, inputType) => {
 	if (parameter[0] === "blockName") {
 		return <h5 className="blockHeader">{parameter[1]}</h5>
 	} else {
 		return inputType === "area" ? textArea( parameter[1], 
 												"text", 
 												parameter[0], 
-												exifData[parameter[0]]) :
+												exifData[parameter[0]],
+												onChange) :
 									inputText(  parameter[1], 
 												"text", 
 												parameter[0], 
-												exifData[parameter[0]])
+												exifData[parameter[0]],
+												onChange)
 	}
 }
 
-const iterateParams = (params, exifData, inputType) => {
+const iterateParams = (params, exifData, onChange, inputType) => {
 	return Object.entries(params).map((parameter) => {
 		if (typeof parameter[1] === "object") {
-			return iterateParams(parameter[1], exifData);
+			return iterateParams(parameter[1], exifData, onChange);
 		} else {
-			return parameterToListItem(parameter, exifData, inputType)
+			return parameterToListItem(parameter, exifData, onChange, inputType)
 		}
 	})
 }
 
-const inputText = (label, type, name, value) => {
+const inputText = (label, type, name, value, onChange) => {
 	return (<li className="labeledInputText">
 				<label>{label}</label>
 				<input  type={type} 
 						name={name} 
-						value={value} />
+						value={value}
+						onChange={onChange} />
 			</li>)
 }
 
-const textArea = (label, type, name, value) => {
+const textArea = (label, type, name, value, onChange) => {
 	return (<div className="labeledTextArea">
 				<label>{label}</label>
 				<textarea type={type} 
 						  name={name} 
 						  value={value} 
 						  onFocus={extendTextArea(true)}
-						  onBlur={extendTextArea(false)} />
+						  onBlur={extendTextArea(false)}
+						  onChange={onChange} />
 			</div>)
 }
 
