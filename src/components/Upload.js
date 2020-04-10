@@ -16,7 +16,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onChangeExif: (parameters) => dispatch(changeExif(parameters)),
-		onChangeInput: (event) => dispatch(changeInput(event.target))
+		onChangeInput: (event) => dispatch(changeInput(event.target)),
+		onChangeCategory: (event) => dispatch(changeInput({
+			name: event.target.name,
+			value: event.target.options[event.target.selectedIndex].value
+		}))
 	}
 }
 
@@ -122,7 +126,9 @@ class Upload extends React.Component {
 
 		// ------- EXIF data fullfill -------
 		const exifList = document.getElementById('exif');
-		let exifData = {};
+		let exifData = {
+			category: document.getElementsByName('category')[0].options[document.getElementsByName('category')[0].selectedIndex].value
+		};
     	EXIF.getData(img, function() {
 	        const parameters = ["Model", "ExposureTime", "FNumber", 
 	         					"ISOSpeedRatings", "FocalLength"];
@@ -233,7 +239,7 @@ class Upload extends React.Component {
 					<Select name="category"
 							title="Номинация"
 							options={this.categories}
-							onChangeInput={this.props.onChangeInput} />
+							onChange={this.props.onChangeCategory} />
 					<EXIFData exifData={this.props.exifData}
 							onChangeInput={this.props.onChangeInput} />
 					<button type="submit" 
