@@ -50,13 +50,14 @@ class App extends React.Component {
   					return image;
   			}
   		})
+  		const logo = document.documentElement.clientWidth > 600 ? "logo-medium.png" : "logo-192.png";
 	  	return (
 	    <div className="App">
 	      <header className="header sans-serif">
 	      	
 	      	<ul className='menu' id="menu-container">
 	      		<li className='fl w-20'>
-			      	<img src='logo-medium.png' className='logo' />
+			      	<img src={logo} className='logo' />
 			    </li>
 		      	<Menu 	pageWrapId={ "page-wrap" }
 		      			outerContainerId={ "menu-container" }
