@@ -1,3 +1,9 @@
+@mixin checked_label($color: #339, $weight: 500) {
+	cursor: pointer;
+	color: $color;
+	font-weight: $weight;
+};
+
 .radio {
 	width: 50%;
 	margin-left: 40%;
@@ -8,18 +14,16 @@
 	& label {
 		max-width: 25%;
 		&:hover {
-			color: #337;
-			font-weight: 500;
-			cursor: pointer;
+			@include checked_label($color: #777);
 		}
 	}
 }
 
+.checkedLabel {
+	@include checked_label;
+}
+
 input[type=radio] {
-	width: 15px;
-	height: 15px;
-	background: white;
-	border-radius: none;
 	display: none;
 }
 

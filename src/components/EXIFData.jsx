@@ -54,7 +54,9 @@ const inputText = (label, type, name, value, onChange) => {
 				<input  type={type} 
 						name={name} 
 						value={value}
-						onChange={onChange} />
+						onChange={onChange} 
+						onFocus={validationError}
+						onBlur={validationError} />
 			</li>)
 }
 
@@ -71,6 +73,11 @@ const textArea = (label, type, name, value, onChange) => {
 }
 
 const extendTextArea = (expand) => (event) => {
+	if (expand && event.target.classList.contains("validation-error")) {
+		event.target.classList.remove("validation-error");
+	} else if (!expand) {
+		validationError(event);
+	}
 	let height = event.target.clientHeight;
 	const endHeight = expand ? height * 3 : height/3;
 	const area = event.target;
@@ -83,6 +90,14 @@ const extendTextArea = (expand) => (event) => {
 			clearInterval(interval);
 		}
 	}, 10);
+}
+
+const validationError = (e) => {
+	if (e.type === "blur" && e.target.value.length < 1) {
+		e.target.classList.add("validation-error")
+	} else {
+		e.target.classList.remove("validation-error")
+	}
 }
 
 export default EXIFData;

@@ -57,7 +57,9 @@ class App extends React.Component {
 	      	
 	      	<ul className='menu' id="menu-container">
 	      		<li className='fl w-20'>
-			      	<img src={logo} className='logo' />
+			      	<a href="http://wncontest.ru/">
+			      		<img src={logo} className='logo' />
+			    	</a>
 			    </li>
 		      	<Menu 	pageWrapId={ "page-wrap" }
 		      			outerContainerId={ "menu-container" }
