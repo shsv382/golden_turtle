@@ -1,4 +1,5 @@
 import React from 'react';
+import { InputText, validationError } from './InputText';
 import './EXIFData.scss';
 
 const EXIFData = ({exifData, onChangeInput}) => {
@@ -49,15 +50,15 @@ const iterateParams = (params, exifData, onChange, inputType) => {
 }
 
 const inputText = (label, type, name, value, onChange) => {
-	return (<li className="labeledInputText">
-				<label>{label}</label>
-				<input  type={type} 
-						name={name} 
-						value={value}
-						onChange={onChange} 
-						onFocus={validationError}
-						onBlur={validationError} />
-			</li>)
+	return <InputText 
+			label={label}
+			type={type}
+			name={name}
+			value={value}
+			onChange={onChange} 
+			onFocus={validationError}
+			onBlur={validationError}
+			/>
 }
 
 const textArea = (label, type, name, value, onChange) => {
@@ -92,12 +93,6 @@ const extendTextArea = (expand) => (event) => {
 	}, 10);
 }
 
-const validationError = (e) => {
-	if (e.type === "blur" && e.target.value.length < 1) {
-		e.target.classList.add("validation-error")
-	} else {
-		e.target.classList.remove("validation-error")
-	}
-}
+
 
 export default EXIFData;

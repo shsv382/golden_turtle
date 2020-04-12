@@ -4,6 +4,11 @@
 	background-size: cover;
 	height: 300px;
 	width: 300px;
+	cursor: move;
+	cursor: -webkit-zoom-in;
+	cursor: -moz-zoom-in;
+	cursor: -o-zoom-in;
+	cursor: zoom-in;
 }
 
 .avgRating {

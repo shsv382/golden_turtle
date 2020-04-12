@@ -1,6 +1,7 @@
 import React from 'react';
 import ImagesList from '../components/ImagesList';
 import Upload from '../components/Upload';
+import Header from '../components/Header';
 import './App.scss';
 import './burger.scss';
 import { Switch, Route } from 'react-router-dom';
@@ -41,49 +42,18 @@ class App extends React.Component {
   		const images = this.props.images.filter(image => {
   			switch (filterBy) {
   				case 'top100':
-  					return image.avgRating > 1.9;
+  					return image.avgRating > 2.1;
   					break;
   				case 'finalist':
-  					return image.avgRating > 2.2;
+  					return image.avgRating > 2.35;
   					break;
   				default:
   					return image;
   			}
   		})
-  		const logo = document.documentElement.clientWidth > 600 ? "logo-medium.png" : "logo-192.png";
-	  	return (
+  		return (
 	    <div className="App">
-	      <header className="header sans-serif">
-	      	
-	      	<ul className='menu' id="menu-container">
-	      		<li className='fl w-20'>
-			      	<a href="http://wncontest.ru/">
-			      		<img src={logo} className='logo' />
-			    	</a>
-			    </li>
-		      	<Menu 	pageWrapId={ "page-wrap" }
-		      			outerContainerId={ "menu-container" }
-		      			right
-		      	>
-		      		<li className='fl w-15 menu-item'>
-				        <a href="/" className="link dim near-white">My page</a>
-				    </li>
-				    <li className='fl w-15 menu-item'>    
-				        <a href="/upload" className="link dim near-white">Upload</a>
-		        	</li>
-		      	</Menu>
-	      		{/*
-			    <li className='fl w-30'>
-
-			    </li>
-			    <li className='fl w-15'>
-			        <a href="/" className="link dim near-white">My page</a>
-			    </li>
-			    <li className='fl w-15'>    
-			        <a href="/upload" className="link dim near-white">Upload</a>
-	        	</li>*/}
-	        </ul>
-	      </header>
+	      <Header />
 	      <div className="container">
 	      	<Switch>
 	            <Route exact path={process.env.PUBLIC_URL + '/'} render={ () => 

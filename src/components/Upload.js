@@ -4,6 +4,7 @@ import Select from './Select';
 import EXIF from 'exif-js';
 import { Line } from 'rc-progress';
 import './upload.scss';
+import { InputText, validationError } from './InputText';
 import { connect } from 'react-redux';
 import { changeExif, changeInput } from '../actions';
 
@@ -37,7 +38,8 @@ class Upload extends React.Component {
 		this.uploadBtnClick = this.uploadBtnClick.bind(this);
 		this.handleDragOver = this.handleDragOver.bind(this);
 		this.handleDragLeave = this.handleDragLeave.bind(this);
-		
+
+		this._showNameInput = this._showNameInput.bind(this);
 		this._addImgFileReader = this._addImgFileReader.bind(this);
 		this._restartProgressBar = this._restartProgressBar.bind(this);
 		this._increaseProgressBar = this._increaseProgressBar.bind(this);
@@ -53,8 +55,12 @@ class Upload extends React.Component {
 	}
 
 	handleSubmit(e) {
-		alert(`Данные отправлены! Например, выдержка - 
-			${this.props.exifData["ExposureTime"]}`);
+		let exif = [];
+		Object.entries(this.props.exifData).map(i => {
+			exif.push(`${i[0]}: ${i[1]}`);
+		});
+		console.log(this.props.exifData)
+		alert(`Данные отправлены:\n\n${exif.join('\n')}`);
 		e.preventDefault();
 	}
 
@@ -155,10 +161,9 @@ class Upload extends React.Component {
 
 	    // ------- File reader operations -------
 	    const fr = this._addImgFileReader();
-		fr.readAsDataURL(img);
-		let descriptionInputs = document.getElementsByClassName("description_inputs")[0];
-	    this._scrollToBlockHeader(descriptionInputs);
-
+		fr.readAsDataURL(img);const descriptionInputs = document.getElementsByClassName("description_inputs")[0];
+	    const title = document.getElementsByName("title")[0];
+		this._scrollToBlockHeader(document.getElementsByClassName("description_inputs")[0]);
 		
 	    // ------- Setting state -------
 		this.props.onChangeExif(exifData);
@@ -175,30 +180,45 @@ class Upload extends React.Component {
 	        img.classList.add("imgPreview");
 
 	        // ------- Change it to Image-heighted div height -------
+	        img.style.maxWidth = "100%";
 	        if (document.documentElement.clientWidth >= 768) {
-	        	image_uploader.style.height = document.body.offsetHeight - 130 + 'px';	
+	        	image_uploader.style.height = document.body.offsetHeight - 170 + 'px';	
+	        	img.style.maxHeight = image_uploader.clientHeight - 170 + 'px';
 	        } else {
-	        	image_uploader.style.maxHeight = document.body.offsetHeight - 130 + 'px';
+	        	document.getElementById("upload_btn").style.position = "relative";
+	        	img.style.maxHeight = document.body.offsetHeight - 170 + 'px';
+	        	image_uploader.style.maxHeight = img.clientHeight - 30 + 'px';
+	        	document.getElementsByClassName("rc-progress-line")[0].style.top = img.offsetHeight + "px";	
 	        }
 	        // ------------------------------------------------------
 
-	        img.style.maxHeight = image_uploader.clientHeight - 70 + 'px';
-	        img.style.maxWidth = "100%";
 	        document.querySelector("#uploading_image").style.marginTop = "20px";
 	        image_uploader.style.border = "none";
 	        image_uploader.style.background = "none";
-	        image_uploader.prepend(img); 
+	        image_uploader.prepend(img);
+	        let title = document.getElementsByName("title")[0];
+			title.parentElement.style.display = "block"; 
+			title.parentElement.style.marginLeft = 0;
+			title.parentElement.style.width = "100%";
+			title.style.display = "block"; 
+			title.style.width = "100%";
 		}, false);
 		return fr;
+	}
+
+	_showNameInput() {
+		let title = document.getElementsByName("title");
+		title.parentElement.style.display = "block";
 	}
 
 	_scrollToBlockHeader(target) {
 		if (document.body.offsetWidth >= 768) {
 			return false
 		}
+		console.log(target.getBoundingClientRect().top);
 		let interval = setInterval(()=>{
 			document.documentElement.scrollTop += 8;
-			if (target.getBoundingClientRect().top <= 77 || 
+			if (target.getBoundingClientRect().top <= 150 || 
 				document.documentElement.scrollTop >= document.documentElement.scrollHeight - document.documentElement.clientHeight - 20) {
 				clearInterval(interval);
 			}
@@ -233,6 +253,16 @@ class Upload extends React.Component {
 								bottom: 0,
 								left: 0
 							}}
+					/>
+
+	        		<InputText 
+						label={"Придумайте название"}
+						type={"text"}
+						name={"title"}
+						onChange={this.props.onChangeInput} 
+						onFocus={validationError}
+						onBlur={validationError}
+						style={{display: "none"}}
 					/>
 				</div>
 				<ul className="description_inputs dib tc fl w-50" id='exif'>

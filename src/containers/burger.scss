@@ -46,7 +46,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: #373a47;
+  background: #282c34;
   font-size: 1.15em;
 }
 
@@ -64,6 +64,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
+  width: 100%;
+  border: 1px solid #282c34;
+  outline: none !important;
+  padding: 0 !important;
+  & a {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 20px 0px;
+  }
 }
 
 /* Styling of overlay */

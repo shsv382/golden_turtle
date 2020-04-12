@@ -30,6 +30,7 @@ const ImagesList = ({images, filterBy}) => {
 			<a href='/upload'>
 			<li className='image_preview tc grow br3 pa4 ma2 dib bw2 shadow-5'
 				style={{
+					cursor: 'pointer',
 					background: `linear-gradient(to bottom right, #fafafa, #aaaaaa)`
 				}}>
 				<div style={{
