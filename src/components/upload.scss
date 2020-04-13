@@ -78,6 +78,16 @@ textarea {
 	color: #222;
 }
 
+textarea:-moz-placeholder {
+	padding: 3px;
+	color: #ccc;
+}
+
+textarea::-webkit-input-placeholder {
+	padding: 3px;
+	color: #ccc;
+}
+
 input[type=text]:focus, textarea:focus {
 	border-color: rgba(50,150,150,0.5);;
 	outline-color: rgba(50,150,150,0.5);

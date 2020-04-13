@@ -155,7 +155,9 @@ class Upload extends React.Component {
 	        	} catch {
 	        		exifData[parameter] = "";
 	        	}
-	        	document.getElementsByName(parameter)[0].value = exifData[parameter];
+	        	let paramInput = document.getElementsByName(parameter)[0];
+	        	paramInput.value = exifData[parameter];
+	        	paramInput.classList.remove("validation-error");
 	        })
 	    });
 

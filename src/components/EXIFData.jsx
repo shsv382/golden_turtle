@@ -5,9 +5,9 @@ import './EXIFData.scss';
 const EXIFData = ({exifData, onChangeInput}) => {
 	const params = {
 		blockName: "Описание снимка",
-		Model: "Оборудование",
-	    conditions: "Условия съемки",
-	    animal: "Животное/растение в кадре",
+		Model: "Оборудование$Камера, объектив...",
+	    conditions: "Условия съемки$Ночью, в лесу, в дождь...",
+	    animal: "Животное/растение в кадре$Серна, пихта...",
 		parameters: {
 			blockName: "Параметры съемки",
 			ExposureTime: "Выдержка", 
@@ -63,10 +63,11 @@ const inputText = (label, type, name, value, onChange) => {
 
 const textArea = (label, type, name, value, onChange) => {
 	return (<div className="labeledTextArea">
-				<label>{label}</label>
+				<label>{label.split("$")[0]}</label>
 				<textarea type={type} 
 						  name={name} 
 						  value={value} 
+						  placeholder={label.split("$")[1]}
 						  onFocus={extendTextArea(true)}
 						  onBlur={extendTextArea(false)}
 						  onChange={onChange} />
