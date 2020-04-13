@@ -1,5 +1,5 @@
 import React from 'react';
-import ImagesList from '../components/ImagesList';
+import UserPage from '../components/UserPage';
 import Upload from '../components/Upload';
 import Header from '../components/Header';
 import './App.scss';
@@ -28,9 +28,6 @@ const mapDispatchToProps = dispatch => {
 class App extends React.Component {
   constructor(props) {
   	super(props);
-  	this.state = {
-  		images: []
-  	}
   }
 
   componentDidMount() {
@@ -57,11 +54,11 @@ class App extends React.Component {
 	      <div className="container">
 	      	<Switch>
 	            <Route exact path={process.env.PUBLIC_URL + '/'} render={ () => 
-					(this.props.isPending) ? 
-						<h1>Загрузка</h1>
-					:
-						<ImagesList images={images}
-								filterBy={onFilterChange} />	
+					<UserPage 	images={images}
+								filterBy={onFilterChange}
+								error={this.props.error}
+								isPending={this.props.isPending}
+								requestImages={this.props.onRequestImages} />	
 					
 	            } />
 	            <Route path={process.env.PUBLIC_URL + '/upload'} component={Upload} />
