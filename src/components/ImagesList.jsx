@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Image from './Image';
 import './image.css';
 import './ImagesList.scss';
@@ -17,6 +18,7 @@ const ImagesList = ({images, filterBy}) => {
 
 	return(
 		<ul className="imageList">
+			<div id="image-edit-component"></div>
 			<div id='filterImages' class='radio'>
 				<RadioGroup
 		        	name="filter"
@@ -46,12 +48,20 @@ const ImagesList = ({images, filterBy}) => {
 				return (
 					<Image
 						key={i}
-						image={image} />
+						image={image} 
+						onClick={showImageEdit(image)} />
 					)
 				}) 
 			}
 		</ul>
 	);
+}
+
+const showImageEdit = image => e => {
+	const ImageEdit = React.lazy(() => import('./ImageEdit'));
+	ReactDOM.render(<React.Suspense fallback={<div>Loading...</div>}>
+						<ImageEdit image={image} />
+					</React.Suspense>, document.getElementById("image-edit-component"))
 }
 
 export default ImagesList;
