@@ -1,11 +1,9 @@
 #editing-image {
 	position: absolute;
+	top: 0;
+	left: -100px;
 	z-index: 9999;
-	top: 50;
-	margin: 20px auto;
-	max-width: 95%;
-	height: 300px;
-	border: 1px dotted blue;
+	margin: auto;
 	background: rgba(30,30,30,0.3);
 	& img {
 		display: block;

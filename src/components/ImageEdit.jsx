@@ -8,8 +8,10 @@ class ImageEdit extends React.Component {
 
 	componentDidMount() {
 		const modal = document.getElementById("editing-image");
-		modal.style.width = document.documentElement.clientWidth - 40 + "px";
-		modal.style.height = document.documentElement.clientHeight/1.5 + "px";
+		modal.style.width = document.documentElement.clientWidth + "px";
+		modal.style.left =  document.getElementsByClassName("container")[0]
+							.getBoundingClientRect().left * (-1) + "px";
+		modal.style.height = document.documentElement.clientHeight + "px";
 	}
 
 	render() {
