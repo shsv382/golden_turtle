@@ -30,7 +30,7 @@ class UserPage extends React.Component {
 
 	render() {
 		const { onFilterChange, filterBy } = this.props;
-		const images = this.props.images.filter(image => {
+		const filteredImages = this.props.images.filter(image => {
   			switch (filterBy) {
   				case 'top100':
   					return image.avgRating > 2.1;
@@ -44,7 +44,7 @@ class UserPage extends React.Component {
   		})
 		return (
 			(this.props.isPending) ? <h1>Загрузка</h1>	:
-			<ImagesList images={this.props.images}
+			<ImagesList images={filteredImages}
 						onFilterChange={this.props.onFilterChange} />
 		)
 	}

@@ -22,7 +22,7 @@ const ImagesList = ({images, onFilterChange}) => {
 			<div id='filterImages' class='radio'>
 				<RadioGroup
 		        	name="filter"
-		        	onChange={onFilterChange}
+		        	onChange={filter}
 		      	>
 		      		<RadioButton id="all_images" value='' checked>Все работы</RadioButton> 
 		        	<RadioButton id="top100" value='top100'>Топ-100</RadioButton> 
