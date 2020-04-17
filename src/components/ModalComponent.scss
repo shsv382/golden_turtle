@@ -1,0 +1,82 @@
+#modal-background {
+	margin: auto;
+	position: fixed;
+	top: 0;
+	width: 10000px;
+	left: -100px;
+	z-index: 9999;
+	margin: auto;
+	background: rgba(30,30,30,0.3);
+	animation: fadeIn 0.3s;
+}
+
+#modal-window {
+	background: white;
+	display: block;
+	padding: 20px;
+	margin: 20px auto;
+	border-radius: 5px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 50%;
+	animation: fadeDown 0.5s;
+	
+	@media screen and (max-width: 768px) {
+		width: 80%;
+	}
+	@media screen and (max-width: 480px) {
+		width: 90%;
+	}
+}
+
+#closeWindow {
+	position: fixed;
+	right: 20px;
+	top: 15px;
+	color: white;
+	text-shadow: 0px 0px 2px #888;
+	opacity: 0.3;
+	animation: rotate 0.3s;
+	font-size: 2em;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.7;
+		animation: rotateBack 0.3s;
+	}
+	@media screen and (max-width: 480px) {
+		top: 50px;
+		right: 30px;
+		color: #555;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		background: rgba(30,30,30,0);
+	}
+}
+
+@keyframes fadeDown {
+	from {
+		height: 0;
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotateBack {
+	from {
+		transform: rotate(360deg);
+	}
+	to {
+		transform: rotate(0deg);
+	}
+}

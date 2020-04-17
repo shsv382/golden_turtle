@@ -5,7 +5,7 @@ import './image.css';
 import './ImagesList.scss';
 import { RadioButton, RadioGroup } from 'react-radio-group-context';
 
-const ImagesList = ({images, filterBy}) => {
+const ImagesList = ({images, onFilterChange}) => {
 	const filter = (event) => {
 		const radioGroup = document.getElementById("filterImages");
 		let labels = radioGroup.getElementsByTagName("label");
@@ -13,7 +13,7 @@ const ImagesList = ({images, filterBy}) => {
 			label.classList.remove("checkedLabel");
 		});
 		event.target.parentElement.classList.add("checkedLabel");
-		filterBy(event)
+		onFilterChange(event)
 	}
 
 	return(
@@ -22,7 +22,7 @@ const ImagesList = ({images, filterBy}) => {
 			<div id='filterImages' class='radio'>
 				<RadioGroup
 		        	name="filter"
-		        	onChange={filter}
+		        	onChange={onFilterChange}
 		      	>
 		      		<RadioButton id="all_images" value='' checked>Все работы</RadioButton> 
 		        	<RadioButton id="top100" value='top100'>Топ-100</RadioButton> 
@@ -58,9 +58,9 @@ const ImagesList = ({images, filterBy}) => {
 }
 
 const showImageEdit = image => e => {
-	const ImageEdit = React.lazy(() => import('./ImageEdit'));
+	const ModalComponent = React.lazy(() => import('./ModalComponent'));
 	ReactDOM.render(<React.Suspense fallback={<div>Loading...</div>}>
-						<ImageEdit image={image} />
+						<ModalComponent image={image} />
 					</React.Suspense>, document.getElementById("image-edit-component"))
 }
 
