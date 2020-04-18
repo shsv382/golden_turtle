@@ -97,7 +97,7 @@ const ImagesList = ({images, onFilterChange, isPending, error}) => {
 
 const showImageEdit = image => e => {
 	const ModalComponent = React.lazy(() => import('./ModalComponent'));
-	ReactDOM.render(<React.Suspense fallback={<div>Loading...</div>}>
+	ReactDOM.render(<React.Suspense fallback={<div style={{display: 'none'}}> </div>}>
 						<ModalComponent image={image} />
 					</React.Suspense>, document.getElementById("image-edit-component"))
 }
