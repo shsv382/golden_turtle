@@ -3,6 +3,7 @@ import UserPage from '../components/UserPage';
 import Upload from '../components/Upload';
 import Header from '../components/Header';
 import './App.scss';
+import './Animations.scss';
 import './burger.scss';
 import { Switch, Route } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';

@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import Image from './Image';
 import './image.css';
 import './ImagesList.scss';
 import { RadioButton, RadioGroup } from 'react-radio-group-context';
 
-const ImagesList = ({images, onFilterChange}) => {
+const mapStateToProps = state => {
+	return {
+		isPending:  state.requestImages.isPending,
+    	error:      state.requestImages.error
+	}
+}
+
+const ImagesList = ({images, onFilterChange, isPending, error}) => {
 	const filter = (event) => {
 		const radioGroup = document.getElementById("filterImages");
 		let labels = radioGroup.getElementsByTagName("label");
@@ -16,10 +24,38 @@ const ImagesList = ({images, onFilterChange}) => {
 		onFilterChange(event)
 	}
 
+	const showImages = (isPending, error, images) => {
+		if (!isPending && !error) {
+			return images.map((image, i) => {
+					return (
+						<Image
+							key={i}
+							image={image} 
+							onClick={showImageEdit(image)} />
+						)
+					}) 	
+		} else {
+			return [1,2,3,4,5,6,7].map((image, i) => {
+					return (
+						<Image
+							key={i}
+							isPending={isPending}
+							error={error} />
+						)
+					}) 	
+		}
+	}
+
 	return(
 		<ul className="imageList">
 			<div id="image-edit-component"></div>
-			<div id='filterImages' class='radio'>
+			<div id='filterImages' className='radio'>
+			{
+				isPending && !error && <div className='notify wait'>Подождите...</div>
+			}
+			{
+				error && <div className='notify error'>Нет соединения</div>
+			}	
 				<RadioGroup
 		        	name="filter"
 		        	onChange={filter}
@@ -44,14 +80,16 @@ const ImagesList = ({images, onFilterChange}) => {
 				}}></div>
 			</li> 
 			</a>
-			{ images.map((image, i) => {
-				return (
-					<Image
-						key={i}
-						image={image} 
-						onClick={showImageEdit(image)} />
-					)
-				}) 
+			{ 
+				showImages(isPending, error, images)
+				// images.map((image, i) => {
+				// 	return (
+				// 		<Image
+				// 			key={i}
+				// 			image={image} 
+				// 			onClick={showImageEdit(image)} />
+				// 		)
+				// 	}) 	
 			}
 		</ul>
 	);
@@ -64,4 +102,5 @@ const showImageEdit = image => e => {
 					</React.Suspense>, document.getElementById("image-edit-component"))
 }
 
-export default ImagesList;
+
+export default connect(mapStateToProps)(ImagesList);

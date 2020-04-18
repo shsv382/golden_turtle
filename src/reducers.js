@@ -36,7 +36,7 @@ export const requestImages = (state=initialStateImages, action={}) => {
 			return {...state, isPending: true};
 			break;
 		case REQUEST_IMAGES_SUCCESS:
-			return {...state, images: action.payload, isPending: false};
+			return {...state, error: '', images: action.payload, isPending: false};
 			break;
 		case REQUEST_IMAGES_FAILED:
 			return {...state, error: action.payload, isPending: false};

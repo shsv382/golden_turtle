@@ -11,6 +11,13 @@
 	cursor: zoom-in;
 }
 
+.image_preview_pending {
+	cursor: wait;
+	background: #eee;
+	background: linear-gradient(to bottom right, rgb(250, 250, 250), rgb(170, 170, 170));
+	animation: pending 1s infinite;
+}
+
 .avgRating {
 	display: inline-block;
 	float: left;
@@ -109,4 +116,71 @@
 		bottom: 10px;
 		left: 10px;
 	}
+}
+
+/*@keyframes pending {
+	@for $i from 1 to 50 {
+	  #{$i * 1%} {
+	    background: linear-gradient(rgb(200+$i,200+$i,200+$i), rgb(250-$i,250-$i,250-$i));
+	  }
+	} 
+	@for $i from 51 to 100 {
+	  #{$i * 1%} {
+	    background: linear-gradient(rgb(250-$i,250-$i,250-$i), rgb(200+$i,200+$i,200+$i));
+	  }
+	} 
+}*/
+
+@keyframes pending {
+	$perc {
+		background: red;
+	}
+	6% {
+			background: linear-gradient(to bottom right, rgb(240, 240, 240), rgb(180, 180, 180));
+		}
+	12% {
+			background: linear-gradient(to bottom right, rgb(230, 230, 230), rgb(190, 190, 190));
+		}
+	19% {
+			background: linear-gradient(to bottom right, rgb(220, 220, 220), rgb(200, 200, 200));
+		}
+	25% {
+			background: linear-gradient(to bottom right, rgb(210, 210, 210), rgb(210, 210, 210));
+		}
+	32% {
+			background: linear-gradient(to bottom right, rgb(200, 200, 200), rgb(220, 220, 220));
+		}
+	38% {
+			background: linear-gradient(to bottom right, rgb(190, 190, 190), rgb(230, 230, 230));
+		}
+	43% {
+			background: linear-gradient(to bottom right, rgb(180, 180, 180), rgb(240, 240, 240));
+		}	
+	50% {
+			background: linear-gradient(to bottom right, rgb(170, 170, 170), rgb(250, 250, 250));
+		}
+	57% {
+			background: linear-gradient(to bottom right, rgb(180, 180, 180), rgb(240, 240, 240));
+	}
+	62% {
+			background: linear-gradient(to bottom right, rgb(190, 190, 190), rgb(230, 230, 230));
+		}
+	69% {
+			background: linear-gradient(to bottom right, rgb(200, 200, 200), rgb(220, 220, 220));
+	}
+	75% {
+			background: linear-gradient(to bottom right, rgb(210, 210, 210), rgb(210, 210, 210));
+		}
+	82% {
+			background: linear-gradient(to bottom right, rgb(220, 220, 220), rgb(200, 200, 200));
+		}
+	88% {
+			background: linear-gradient(to bottom right, rgb(230, 230, 230), rgb(190, 190, 190));
+		}
+	94% {
+			background: linear-gradient(to bottom right, rgb(240, 240, 240), rgb(180, 180, 180));
+		}
+	100% {
+			background: linear-gradient(to bottom right, rgb(250, 250, 250), rgb(170, 170, 170));
+		}
 }

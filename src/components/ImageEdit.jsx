@@ -34,6 +34,8 @@ class ImageEdit extends React.Component {
 									nisi ut aliquip ex ea commodo consequat.
 								</p>
 							</li>
+							<li>Просмотров: <strong>{image.votesCount}</strong></li>
+							<li>Средняя оценка: <strong>{image.avgRating}</strong></li>
 						</ul>
 					</div>
 				</React.Fragment>)

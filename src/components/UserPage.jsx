@@ -43,7 +43,6 @@ class UserPage extends React.Component {
   			}
   		})
 		return (
-			(this.props.isPending) ? <h1>Загрузка</h1>	:
 			<ImagesList images={filteredImages}
 						onFilterChange={this.props.onFilterChange} />
 		)
