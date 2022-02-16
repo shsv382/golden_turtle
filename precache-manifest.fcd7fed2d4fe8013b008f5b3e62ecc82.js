@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4770105ccee916d6a91b0912b1ed1102",
+    "revision": "4f3a8b8d2b48e15c8e6f5d8798c3efea",
     "url": "/golden_turtle/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/golden_turtle/static/css/3.4726b674.chunk.css"
   },
   {
-    "revision": "2ac45a8c1255ee817e68",
+    "revision": "54d1585ff2de6459a47d",
     "url": "/golden_turtle/static/css/main.b933840b.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/golden_turtle/static/js/3.babfc407.chunk.js"
   },
   {
-    "revision": "2ac45a8c1255ee817e68",
-    "url": "/golden_turtle/static/js/main.f13d9907.chunk.js"
+    "revision": "54d1585ff2de6459a47d",
+    "url": "/golden_turtle/static/js/main.6d903561.chunk.js"
   },
   {
     "revision": "84f5bfedb2f412dbb6e8",
