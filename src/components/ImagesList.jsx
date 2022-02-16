@@ -65,7 +65,7 @@ const ImagesList = ({images, onFilterChange, isPending, error}) => {
 		        	<RadioButton id="finalist" value='finalist'>Финалисты</RadioButton> 
 		      	</RadioGroup>
 		    </div>
-			<a href='/upload'>
+			<a href='/golden_turtle/upload'>
 			<li className='image_preview tc grow br3 pa4 ma2 dib bw2 shadow-5'
 				style={{
 					cursor: 'pointer',

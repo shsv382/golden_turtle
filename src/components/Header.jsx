@@ -20,7 +20,7 @@ const Header = () => {
 				        <a href="/" className="link dim near-white">My page</a>
 				    </li>
 				    <li className='menu-item'>    
-				        <a href="/upload" className="link dim near-white">Upload</a>
+				        <a href="/golden_turtle/upload" className="link dim near-white">Upload</a>
 		        	</li>
 		        	<li className='menu-item'>    
 				        <a href="http://wncontest.ru/" className="link dim near-white">News</a>
