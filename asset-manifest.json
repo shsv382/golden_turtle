@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/golden_turtle/static/css/main.b933840b.chunk.css",
+    "main.js": "/golden_turtle/static/js/main.f13d9907.chunk.js",
+    "main.js.map": "/golden_turtle/static/js/main.f13d9907.chunk.js.map",
+    "runtime-main.js": "/golden_turtle/static/js/runtime-main.7ca43498.js",
+    "runtime-main.js.map": "/golden_turtle/static/js/runtime-main.7ca43498.js.map",
+    "static/css/2.3b2cfc2e.chunk.css": "/golden_turtle/static/css/2.3b2cfc2e.chunk.css",
+    "static/js/2.3bb8c487.chunk.js": "/golden_turtle/static/js/2.3bb8c487.chunk.js",
+    "static/js/2.3bb8c487.chunk.js.map": "/golden_turtle/static/js/2.3bb8c487.chunk.js.map",
+    "static/css/3.4726b674.chunk.css": "/golden_turtle/static/css/3.4726b674.chunk.css",
+    "static/js/3.babfc407.chunk.js": "/golden_turtle/static/js/3.babfc407.chunk.js",
+    "static/js/3.babfc407.chunk.js.map": "/golden_turtle/static/js/3.babfc407.chunk.js.map",
+    "index.html": "/golden_turtle/index.html",
+    "precache-manifest.fc604b1508a85613924369de0969531d.js": "/golden_turtle/precache-manifest.fc604b1508a85613924369de0969531d.js",
+    "service-worker.js": "/golden_turtle/service-worker.js",
+    "static/css/2.3b2cfc2e.chunk.css.map": "/golden_turtle/static/css/2.3b2cfc2e.chunk.css.map",
+    "static/css/3.4726b674.chunk.css.map": "/golden_turtle/static/css/3.4726b674.chunk.css.map",
+    "static/css/main.b933840b.chunk.css.map": "/golden_turtle/static/css/main.b933840b.chunk.css.map",
+    "static/js/2.3bb8c487.chunk.js.LICENSE.txt": "/golden_turtle/static/js/2.3bb8c487.chunk.js.LICENSE.txt",
+    "static/media/upload.png": "/golden_turtle/static/media/upload.664a5bfd.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ca43498.js",
+    "static/css/2.3b2cfc2e.chunk.css",
+    "static/js/2.3bb8c487.chunk.js",
+    "static/css/main.b933840b.chunk.css",
+    "static/js/main.f13d9907.chunk.js"
+  ]
+}
